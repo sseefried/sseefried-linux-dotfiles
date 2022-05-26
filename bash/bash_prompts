@@ -1,6 +1,6 @@
 # Some really useful things for bash prompts
 
-DATE_CMD="/usr/local/opt/coreutils/libexec/gnubin/date"
+DATE_CMD="/usr/bin/date"
 
 function get_git_origin {
   git remote -v 2>&1 | grep origin | grep fetch | awk '{print $2}'
@@ -84,15 +84,6 @@ set_prompt () {
 
     PS1+="$Blue \\\$ $Reset"
 
-    #
-    # This is required for Mac OS X's Terminal.app. If you don't do it then when you
-    # open a new terminal with Cmd-T it will reset to the $HOME directory, not keep the
-    # current working directory.
-    # See: https://apple.stackexchange.com/questions/144896/open-new-terminal-tab-in-current-working-directory-doesnt-work
-    #
-    if [[ "$TERM_PROGRAM" == "Terminal.app" ]]; then
-      update_terminal_cwd
-    fi
 }
 
 if [ "$IN_NIX_SHELL" = "" ]; then
