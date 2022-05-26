@@ -28,7 +28,6 @@ alias cart-reset='rm -f /Users/sseefried/Sites/interiors-cart/public/vq2*.php'
 alias db='docker build --force-rm=true .'
 alias dr='docker-run'
 alias em='emacs -nw'
-alias nano='emacs -nw'
 
 alias epi-month='task query -vepidemic -s"2015-04-01 0:00"'
 
