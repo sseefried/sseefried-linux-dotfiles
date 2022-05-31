@@ -1,6 +1,17 @@
 #!/bin/bash
 
+function sloc() {
+  cat $1 | grep -vE '^[\t ]*//' \
+         | grep -vE '^[\t ]*(/\*|\*)' \
+         | grep -vE '^$'
+}
+
 for i in $@; do
-   cat $i | grep -vE '^[\t ]*//' \
-          | grep -vE '^[\t ]*(/\*|\*)' \
-          | grep -vE '^$'
+   echo -n "$i    "
+   sloc $i | wc -l
+done
+
+echo -n "All files:    "
+for i in $@; do
+   sloc $i
+done | wc -l
