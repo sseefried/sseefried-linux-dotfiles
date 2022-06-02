@@ -20,7 +20,7 @@ function timew_track {
     timew | grep -Eq "^Tracking"
     if [ ${PIPESTATUS[1]} -eq 0 ]; then
       printf "$(timew | grep -E '^Tracking'  | sed 's/Tracking "\([^"]*\).*$/\1/') "
-      printf "$(timew | grep -E 'Current'  | awk '{ print $2 }')"
+      printf "($(timew | grep -E 'Total'  | awk '{ print $2 }'))"
     fi
 }
 
