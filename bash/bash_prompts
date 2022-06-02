@@ -25,6 +25,16 @@ function timer_start {
     timer_start=${timer_start:-$(timer_now)}
 }
 
+function long_running_process_bell() {
+  n=$1
+  i=0
+  while [ $i -lt $n ]; do
+    echo -e "\a"
+    sleep 0.5
+    i=$((($i + 1)))
+  done
+}
+
 function timer_stop {
     local delta_us=$((($(timer_now) - $timer_start) / 1000))
     local us=$((delta_us % 1000))
@@ -40,6 +50,11 @@ function timer_stop {
     elif ((ms >= 100)); then timer_show=${ms}ms
     elif ((ms > 0)); then timer_show=${ms}.$((us / 100))ms
     else timer_show=${us}us
+    fi
+
+    # If the process took a long time then give us an audible bell
+    if ((m >= 1));  then long_running_process_bell 5
+    elif ((s >= 15)); then long_running_process_bell 2
     fi
     unset timer_start
 }
