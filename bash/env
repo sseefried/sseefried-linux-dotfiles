@@ -2,7 +2,7 @@ THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 
 export EDITOR="nano"
-export LESS="-R"
+export LESS="-SFRXN"
 export PATH=$PATH:$THIS_DIR/../bin
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
@@ -10,5 +10,12 @@ export PATH=$HOME/.ghcup/bin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
 export PATH=$HOME/local/echidna:$PATH
 export PATH=$HOME/.nodenv/bin:$PATH
+export PATH=$HOME/local/cardano-node:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.foundry/bin:$PATH
+
+export CARDANO_NODE_SOCKET_PATH=$HOME/cardano/mainnet/node.socket
 
 eval "$(nodenv init -)"
+
+export CARDANO_TESTNET_MAGIC=1097911063

@@ -35,5 +35,13 @@ alias gra='git-alias gra "git remote add"'
 alias grr='git-alias grr "git remote rm"'
 alias gpu='git-alias gpu "git pull"'
 alias gcl='git-alias gcl "git clone"'
-alias gprom='git-alias gprom "git pull --rebase origin master"'
-alias gpom='git-alias gpom "git push origin master"'
+alias gprom='git-alias gprom "git pull --rebase origin main"'
+alias gpom='git-alias gpom "git push origin main"'
+
+alias cardano-tip="cardano-cli query tip --mainnet"
+
+
+# Time Warrior (timew) aliases
+
+alias twsum='timew summary :week'
+alias twst='timew start'

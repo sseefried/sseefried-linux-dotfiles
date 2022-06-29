@@ -1,0 +1,8 @@
+#!/bin/bash
+
+CARDANO_CLI=$HOME/local/cardano-node/cardano-cli
+
+[ -f $CARDANO_CLI ] || { echo "$CARDANO_CLI does not exist"; exit 1; }
+
+export CARDANO_NODE_SOCKET_PATH=$HOME/cardano/testnet/node.socket
+$CARDANO_CLI query tip --testnet-magic 1097911063 $@
