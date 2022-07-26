@@ -29,7 +29,7 @@
 ;; (add-to-list 'auto-mode-alist '("\\.outline" . outline-mode))
 ;; (add-hook 'outline-mode-hook (lambda () (auto-fill-mode t) (set-fill-column 100)))
 
-(exec-path-from-shell-initialize)
+;; (exec-path-from-shell-initialize)
 
 (global-font-lock-mode 1)
 
@@ -103,8 +103,8 @@ Spotlight binding from command-space to option-space."
     (setq mac-option-modifier mac-command-modifier)
     (setq mac-command-modifier option-was)))
 
-(add-to-list 'load-path "~/.emacs.d/ergoemacs-mode")
-(require 'ergoemacs-mode)
+;; (add-to-list 'load-path "~/.emacs.d/ergoemacs-mode")
+;; (require 'ergoemacs-mode)
 
 ;(setq ergoemacs-theme nil) ;; Uses Standard Ergoemacs keyboard theme
 ;(setq ergoemacs-keyboard-layout "us") ;; Assumes QWERTY keyboard layout

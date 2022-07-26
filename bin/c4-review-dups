@@ -1,13 +1,32 @@
 #!/bin/bash
 
-[ $# -ge 2 ] || { echo "Usage: c4-review-dups <file> <issue>"; exit 1; }
+## c4-review-dups
 
-function wardens_for_issue() {
-  cat "$1" | grep "$2" | awk 'BEGIN {FS =","} {print $5}' | sort | uniq
+[ $# -ge 2 ] || { echo "Usage: c4-review-dups <file> <handle>"; exit 1; }
+
+FILE=$1
+HANDLE=$2
+
+function highs() {
+  cat "$1" | awk 'BEGIN {FS =","} {print $1}' | grep 'H-' | sort | uniq
 }
 
-echo "Issue: $2"
-echo
-wardens_for_issue "$1" "$2"
-echo
-echo "Duplicates: $(wardens_for_issue "$1" "$2" | wc -l)"
+function mediums() {
+  cat "$1" | awk 'BEGIN {FS =","} {print $1}' | grep 'M-' | sort | uniq
+}
+
+function wardens_for_issue() {
+  cat "$1" | awk 'BEGIN {FS =","} { printf("%s %s\n", $1, $5) }' | grep -E "^$2" | awk '{print $2}' | sort | uniq
+}
+
+echo "Finding,Duplications,Found by $HANDLE"
+for i in $(highs "$FILE") $(mediums "$FILE"); do
+  MARKER=""
+  if [ "$HANDLE" != "" ]; then
+    wardens_for_issue "$FILE" "$i" | grep -q "$HANDLE"
+    if [ ${PIPESTATUS[1]} -eq 0 ]; then
+        MARKER="yes"
+    fi
+  fi
+  echo "$i,$(wardens_for_issue "$FILE" "$i" | wc -l),$MARKER"
+done

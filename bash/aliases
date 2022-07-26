@@ -43,5 +43,5 @@ alias cardano-tip="cardano-cli query tip --mainnet"
 
 # Time Warrior (timew) aliases
 
-alias twsum='timew summary :week'
+alias twsum='timew summary :all'
 alias twst='timew start'
