@@ -1,0 +1,13 @@
+#!/bin/bash
+
+[ $# -ge 2 ] || { echo "Usage: c4-review-dups <file> <issue>"; exit 1; }
+
+function wardens_for_issue() {
+  cat "$1" | grep "$2" | awk 'BEGIN {FS =","} {print $5}' | sort | uniq
+}
+
+echo "Issue: $2"
+echo
+wardens_for_issue "$1" "$2"
+echo
+echo "Duplicates: $(wardens_for_issue "$1" "$2" | wc -l)"
